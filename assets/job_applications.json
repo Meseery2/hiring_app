@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "title": "Senior/Staff Backend Engineer",
+        "name": "Ahmed Noor",
+        "timeAgo": "2 minutes ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Accepted",
+        "experienceLevel": "Senior level",
+        "experienceLevelColor": "ff0000",
+        "isMyFav": false
+    },
+    {
+        "id": 2,
+        "title": "junior Node.js Developer",
+        "name": "Mohamed Noor",
+        "timeAgo": "1 hours ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Created",
+        "experienceLevel": "Entry level",
+        "experienceLevelColor": "92D88B",
+        "isMyFav": false
+    },
+    {
+        "id": 3,
+        "title": "Senior Software Engineer",
+        "name": "Ahmed Ali",
+        "timeAgo": "2 hours ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Completed",
+        "experienceLevel": "Mid-Senior level",
+        "experienceLevelColor": "4495FF",
+        "isMyFav": false
+    },
+    {
+        "id": 4,
+        "title": "Senior Front-End Engineer",
+        "name": "Mohamed Ali",
+        "timeAgo": "4 days ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Rejected",
+        "experienceLevel": "Associate",
+        "experienceLevelColor": "0000ff",
+        "isMyFav": false
+    },
+    {
+        "id": 4,
+        "title": "Senior Software Engineer",
+        "name": "Ahmed Mohamed",
+        "timeAgo": "2 weeks ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Accepted",
+        "experienceLevel": "Associate",
+        "experienceLevelColor": "0000ff",
+        "isMyFav": false
+    },
+    {
+        "id": 5,
+        "title": "junior Node.js Developer",
+        "name": "Noor Ahmed",
+        "timeAgo": "1 hours ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Rejected",
+        "experienceLevel": "Entry level",
+        "experienceLevelColor": "92D88B",
+        "isMyFav": false
+    },
+    {
+        "id": 6,
+        "title": "Senior/Staff Backend Engineer",
+        "name": "Ali Mohamed",
+        "timeAgo": "2 minutes ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Accepted",
+        "experienceLevel": "Senior level",
+        "experienceLevelColor": "ff0000",
+        "isMyFav": false
+    },
+    {
+        "id": 7,
+        "title": "Senior Front-End Engineer",
+        "name": "Ali Ahmed",
+        "timeAgo": "4 days ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Created",
+        "experienceLevel": "Associate",
+        "experienceLevelColor": "0000ff",
+        "isMyFav": false
+    },
+    {
+        "id": 8,
+        "title": "Senior Software Engineer",
+        "name": "Yousef Ali",
+        "timeAgo": "2 weeks ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Completed",
+        "experienceLevel": "Associate",
+        "experienceLevelColor": "0000ff",
+        "isMyFav": false
+    },
+    {
+        "id": 9,
+        "title": "Senior Software Engineer",
+        "name": "Noor Ali",
+        "timeAgo": "2 hours ago",
+        "profileImage": "assets/images/avatar.png",
+        "status": "Accepted",
+        "experienceLevel": "Mid-Senior level",
+        "experienceLevelColor": "4495FF",
+        "isMyFav": false
+    }
+]
