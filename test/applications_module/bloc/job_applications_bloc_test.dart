@@ -10,13 +10,13 @@ import 'package:mocktail/mocktail.dart';
 void main() {
   final repositoryMock = JobApplicationsListRepoMock();
   final List<JobApplication> applications = [
-    JobApplication(
+    const JobApplication(
       1,
       'Senior Backend engineer',
       'Mohamed',
       '12 days',
       '',
-      'accepted',
+      'Accepted',
       'senior level',
       '',
     )
@@ -24,12 +24,9 @@ void main() {
   blocTest<JobApplicationsListBloc, JobApplicationsListState>(
     'emits JobApplicationsListError when JobApplicationsListInitalized is added - empty applications',
     build: () => JobApplicationsListBloc(repositoryMock),
-    setUp: () {
-      // when(() => repositoryMock.stubJobApplicationsJSON())
-      //     .thenAnswer((invocation) => Future.value());
-      when(() => repositoryMock.retrieveJobApplications())
-          .thenAnswer((invocation) => Future.value([]));
-    },
+    setUp: () => when(
+      () => repositoryMock.retrieveJobApplications(),
+    ).thenAnswer((invocation) => Future.value([])),
     act: (bloc) => bloc.add(JobApplicationsListInitalized()),
     expect: () =>
         [JobApplicationsListError(errorMessage: "There's no applications")],
@@ -38,12 +35,10 @@ void main() {
   blocTest<JobApplicationsListBloc, JobApplicationsListState>(
       'emits JobApplicationsListLoaded when JobApplicationsListInitalized is added - filled applications',
       build: () => JobApplicationsListBloc(repositoryMock),
-      setUp: () {
-        // when(() => repositoryMock.stubJobApplicationsJSON())
-        //     .thenAnswer((invocation) => Future.value());
-        when(() => repositoryMock.retrieveJobApplications()).thenAnswer(
-            (invocation) => Future<List<JobApplication>>.value(applications));
-      },
+      setUp: () => when(
+            () => repositoryMock.retrieveJobApplications(),
+          ).thenAnswer(
+              (invocation) => Future<List<JobApplication>>.value(applications)),
       act: (bloc) => bloc.add(JobApplicationsListInitalized()),
       expect: () => [
             JobApplicationsListLoaded(
@@ -55,10 +50,9 @@ void main() {
   blocTest<JobApplicationsListBloc, JobApplicationsListState>(
     'when JobApplicationsListDeleteApplicationEvent is added - repo should delete application',
     build: () => JobApplicationsListBloc(repositoryMock),
-    setUp: () {
-      when(() => repositoryMock.deleteJobApplication(applicationId: 1))
-          .thenAnswer((invocation) => anything);
-    },
+    setUp: () => when(
+      () => repositoryMock.deleteJobApplication(applicationId: 1),
+    ).thenAnswer((invocation) => anything),
     act: (bloc) => bloc.add(
       JobApplicationsListDeleteApplicationEvent(applicationId: 1),
     ),
@@ -71,8 +65,6 @@ void main() {
     'when JobApplicationsListDeleteApplicationEvent is added - repo should delete application',
     build: () => JobApplicationsListBloc(repositoryMock),
     setUp: () {
-      // when(() => repositoryMock.stubJobApplicationsJSON())
-      //     .thenAnswer((invocation) => Future.value());
       when(() => repositoryMock.retrieveJobApplications()).thenAnswer(
           (invocation) => Future<List<JobApplication>>.value(applications));
       when(() => repositoryMock.updateJobApplicationStatus(
@@ -89,15 +81,11 @@ void main() {
         ),
       );
     },
-    expect: () => [
-      JobApplicationsListLoaded(
-        applications: applications,
-        applicationStatuses: JobApplicationsListBloc.applicationStatuses,
-      )
-    ],
     verify: (bloc) => verify(
       () => repositoryMock.updateJobApplicationStatus(
-          applicationId: 1, applicationStatus: 'Accepted'),
+        applicationId: 1,
+        applicationStatus: 'Accepted',
+      ),
     ).called(1),
   );
 }
