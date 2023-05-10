@@ -24,6 +24,23 @@ class JobApplicationsListLoaded extends JobApplicationsListState {
       ];
 }
 
+class JobApplicationsListUpdated extends JobApplicationsListState {
+  final List<JobApplication> applications;
+  final List<String> applicationStatuses;
+
+  JobApplicationsListUpdated({
+    required this.applications,
+    required this.applicationStatuses,
+  });
+
+  @override
+  List<Object?> get props => [
+        applications,
+        applicationStatuses,
+        identityHashCode(this),
+      ];
+}
+
 class JobApplicationsListError extends JobApplicationsListState {
   final String errorMessage;
 

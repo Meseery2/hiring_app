@@ -25,8 +25,8 @@ void main() {
     'emits JobApplicationsListError when JobApplicationsListInitalized is added - empty applications',
     build: () => JobApplicationsListBloc(repositoryMock),
     setUp: () {
-      when(() => repositoryMock.stubJobApplicationsJSON())
-          .thenAnswer((invocation) => Future.value());
+      // when(() => repositoryMock.stubJobApplicationsJSON())
+      //     .thenAnswer((invocation) => Future.value());
       when(() => repositoryMock.retrieveJobApplications())
           .thenAnswer((invocation) => Future.value([]));
     },
@@ -39,8 +39,8 @@ void main() {
       'emits JobApplicationsListLoaded when JobApplicationsListInitalized is added - filled applications',
       build: () => JobApplicationsListBloc(repositoryMock),
       setUp: () {
-        when(() => repositoryMock.stubJobApplicationsJSON())
-            .thenAnswer((invocation) => Future.value());
+        // when(() => repositoryMock.stubJobApplicationsJSON())
+        //     .thenAnswer((invocation) => Future.value());
         when(() => repositoryMock.retrieveJobApplications()).thenAnswer(
             (invocation) => Future<List<JobApplication>>.value(applications));
       },
@@ -71,8 +71,8 @@ void main() {
     'when JobApplicationsListDeleteApplicationEvent is added - repo should delete application',
     build: () => JobApplicationsListBloc(repositoryMock),
     setUp: () {
-      when(() => repositoryMock.stubJobApplicationsJSON())
-          .thenAnswer((invocation) => Future.value());
+      // when(() => repositoryMock.stubJobApplicationsJSON())
+      //     .thenAnswer((invocation) => Future.value());
       when(() => repositoryMock.retrieveJobApplications()).thenAnswer(
           (invocation) => Future<List<JobApplication>>.value(applications));
       when(() => repositoryMock.updateJobApplicationStatus(

@@ -1,4 +1,6 @@
-class JobApplication {
+import 'package:equatable/equatable.dart';
+
+class JobApplication extends Equatable {
   final int id;
   final String title;
   final String name;
@@ -6,9 +8,9 @@ class JobApplication {
   final String timeAgo;
   final String experienceLevel;
   final String experienceLevelColor;
-  String status;
+  final String status;
 
-  JobApplication(
+  const JobApplication(
     this.id,
     this.title,
     this.name,
@@ -40,4 +42,37 @@ class JobApplication {
         'experienceLevel': experienceLevel,
         'experienceLevelColor': experienceLevelColor,
       };
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        name,
+        profileImage,
+        timeAgo,
+        experienceLevel,
+        experienceLevelColor,
+        status,
+      ];
+
+  JobApplication copyWith({
+    int? id,
+    String? title,
+    String? name,
+    String? profileImage,
+    String? timeAgo,
+    String? experienceLevel,
+    String? experienceLevelColor,
+    String? status,
+  }) =>
+      JobApplication(
+        id ?? this.id,
+        title ?? this.title,
+        name ?? this.name,
+        timeAgo ?? this.timeAgo,
+        profileImage ?? this.profileImage,
+        status ?? this.status,
+        experienceLevel ?? this.experienceLevel,
+        experienceLevelColor ?? this.experienceLevelColor,
+      );
 }

@@ -20,7 +20,6 @@ class JobApplicationsListBloc
     on<JobApplicationsListInitalized>(
       (event, emit) async {
         try {
-          await _repo.stubJobApplicationsJSON();
           _applications = await _repo.retrieveJobApplications();
           if (_applications.isEmpty) {
             emit(
@@ -32,10 +31,10 @@ class JobApplicationsListBloc
             applications: _applications,
             applicationStatuses: applicationStatuses,
           ));
-        } catch (e) {
+        } catch (exception) {
           emit(
             JobApplicationsListError(
-              errorMessage: e.toString(),
+              errorMessage: exception.toString(),
             ),
           );
         }
@@ -51,17 +50,17 @@ class JobApplicationsListBloc
         applicationId: event.applicationId,
         applicationStatus: event.applicationStatus,
       );
-      // TODO: Add updated state
-      if (_applications.isEmpty) {
-        return;
-      }
+
       final index = _applications
           .indexWhere((element) => element.id == event.applicationId);
       if (index.isNegative) {
         return;
       }
-      _applications[index].status = event.applicationStatus;
-      emit(JobApplicationsListLoaded(
+      final updatedApplication = _applications[index].copyWith(
+        status: event.applicationStatus,
+      );
+      _applications[index] = updatedApplication;
+      emit(JobApplicationsListUpdated(
         applications: _applications,
         applicationStatuses: applicationStatuses,
       ));

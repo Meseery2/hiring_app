@@ -12,12 +12,12 @@ abstract class JobApplicationsRepo {
     required int applicationId,
     required String applicationStatus,
   });
-  Future<void> stubJobApplicationsJSON();
 }
 
-class JobApplicationsRepoImpl implements JobApplicationsRepo {
+class JobApplicationsRepoImpl extends JobApplicationsRepo {
   @override
   Future<List<JobApplication>> retrieveJobApplications() async {
+    await _stubJobApplicationsJSON();
     final response = await _jsonFile.then((file) => file.readAsString());
     final data = await json.decode(response);
 
@@ -45,7 +45,9 @@ class JobApplicationsRepoImpl implements JobApplicationsRepo {
     final applications = await retrieveJobApplications();
     final index =
         applications.indexWhere((element) => element.id == applicationId);
-    applications[index].status = applicationStatus;
+    final updatedApplication =
+        applications[index].copyWith(status: applicationStatus);
+    applications[index] = updatedApplication;
     final data = json.encode(applications);
     _jsonFile.then((file) => file.writeAsStringSync(data));
   }
@@ -56,15 +58,18 @@ class JobApplicationsRepoImpl implements JobApplicationsRepo {
     return file;
   }
 
-  @override
-  Future<void> stubJobApplicationsJSON() async {
+  Future<void> _stubJobApplicationsJSON() async {
     // Only sub json response on the first run
     final isStubbed = await _jsonFile.then((file) => file.exists());
     if (isStubbed) {
       return;
     }
-    final String response =
-        await rootBundle.loadString('assets/job_applications.json');
-    _jsonFile.then((file) => file.writeAsStringSync(response));
+    try {
+      final String response =
+          await rootBundle.loadString('assets/job_applications.json');
+      _jsonFile.then((file) => file.writeAsStringSync(response));
+    } catch (e) {
+      rethrow;
+    }
   }
 }
